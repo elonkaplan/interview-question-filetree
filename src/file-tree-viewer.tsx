@@ -27,7 +27,6 @@ export function FileTreeViewer() {
   const [fileTree, setFileTree] = useState<INode | null>(null);
 
   const getData = useCallback(async (path: string, nodeName?: string) => {
-    console.log(path, nodeName);
     const res = await readINode(nodeName);
 
     const newNode: INode = JSON.parse(JSON.stringify(res));
@@ -72,8 +71,6 @@ export function FileTreeViewer() {
   const setIsOpened = useCallback((path: string, isOpened: boolean) => {
     const splitted = path.split("/");
 
-    console.log(path);
-
     setFileTree((prev) => {
       if (!prev) return prev;
 
@@ -90,8 +87,6 @@ export function FileTreeViewer() {
 
         const name = splitted[i];
 
-        console.log(name, tempTree);
-
         if (i === splitted.length - 1) {
           tempTree.children[name].isOpened = isOpened;
         } else {
@@ -102,8 +97,6 @@ export function FileTreeViewer() {
       return newFileTree;
     });
   }, []);
-
-  console.log(fileTree);
 
   return (
     <div className="bg-white rounded p-6 space-y-6">
