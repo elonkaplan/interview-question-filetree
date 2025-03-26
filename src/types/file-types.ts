@@ -1,14 +1,6 @@
-export interface File {
+export interface INode {
   id: string;
-  type: "file";
+  type: "directory" | "file";
   name: string;
+  children?: string[]; // file or directory ids
 }
-
-export interface Directory {
-  id: string;
-  type: "directory";
-  name: string;
-  children: string[]; // file or directory ids
-}
-
-export type INode = File | Directory;
